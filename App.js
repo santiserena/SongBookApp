@@ -1,38 +1,19 @@
-
-
-import { Text, View } from 'react-native';
-
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-
-
-function MySongBook() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>
-        <h1>List:</h1>
-        -aaaaaa <br/>
-        -bbbbbb <br/>
-        -cccccc <br/>
-      </Text>
-    </View>
-  );
-}
+import { Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import MySongBook from "./components/MySongBook";
 
 function Explorer() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>
-        Soy el explorador
-      </Text>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Soy el explorador</Text>
     </View>
   );
 }
 
 function SettingsScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>soy el Setter</Text>
     </View>
   );
