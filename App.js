@@ -1,42 +1,10 @@
-
-
-import { Text, View } from 'react-native';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import MySongBook from './components/MySongBook';
+import Explorer from './components/Explorer';
+import SettingsScreen from './components/SettingsScreen';
 
-
-function MySongBook() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>
-        <h1>List:</h1>
-        -aaaaaa <br/>
-        -bbbbbb <br/>
-        -cccccc <br/>
-      </Text>
-    </View>
-  );
-}
-
-function Explorer() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>
-        Soy el explorador
-      </Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>soy el Setter</Text>
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 
@@ -51,25 +19,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-/* import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>SongBook</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-}); */
