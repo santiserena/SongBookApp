@@ -1,13 +1,32 @@
-import { View, Text, Button } from "react-native-web";
+import { useState } from "react";
+import axios from "react-native-axios";
+import { View, Text, Button, TextInput, ActivityIndicator } from "react-native-web";
 
 export default function Creator() {
+  const [toSearch, setToSearch] = useState("");
+
+  const search = async () => {
+    let res = await axios.get(
+      "https://api.happi.dev/v1/music?q=Get%20Lucky&limit=&apikey=0c08e7DktNviaZReOp8XSQooIY9iIMhAHKHazpQzI9w2osMaUfKy8Qmn&type=:type&lyrics=1"
+    );
+    console.log("soy el buscador", res.data);
+  };
+
   return (
+    
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Button
         onPress={() => navigation.navigate("My Songbook")}
         title="Go back to my song book"
       />
-      <Text>soy el Creator</Text>
+      {/* <ActivityIndicator size='large'/> */}
+
+      <Text>First, search by name or artist, the lyrics of a song:</Text>
+      <TextInput
+        onChangeText={(ev) => setToSearch(ev)}
+        placeholder="michael jackson"
+      />
+      <Button onPress={() => search()} title="See results" />
     </View>
   );
 }
