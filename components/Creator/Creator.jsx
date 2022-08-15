@@ -1,33 +1,45 @@
 import { useState } from "react";
 import axios from "react-native-axios";
-//import { View, Text, Button, TextInput, ActivityIndicator } from "react-native-web";
 import {API_KEY} from "@env"
-import { Image, ScrollView, View, Text, Button, TextInput, ActivityIndicator } from "react-native";
+import { Image, ScrollView, View, Text, Button, TextInput, ActivityIndicator, TouchableOpacity, Alert } from "react-native";
 
-
-export default function Creator() {
+export default function Creator({ navigation }) {
   const [toSearch, setToSearch] = useState("");
   const [found, setFound] = useState([]);
 
   const search = async () => {
-    let urlMaker = toSearch.split(" ");
-    urlMaker = urlMaker.join("%20");
-    urlMaker = `https://api.happi.dev/v1/music?q=${urlMaker}&limit=&apikey=${API_KEY}&type=:type&lyrics=1`;
+    if (!toSearch) {
+      console.log(
+        "ALERTA! write the name of a song. You can add the artist too"
+      );
+    } else {
+      try {
+        let urlMaker = toSearch.split(" ");
+        urlMaker = urlMaker.join("%20");
+        urlMaker = `https://api.happi.dev/v1/music?q=${urlMaker}&limit=&apikey=${API_KEY}&type=:type&lyrics=1`;
 
-    let res = await axios.get(urlMaker);
-    if (res.data.success) setFound(res.data.result);
+        let res = await axios.get(urlMaker);
+        if (res.data.success && res.data.length) setFound(res.data.result);
+        else console.log("ALERTA! No matches found");
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
     <ScrollView /* style={{ flex: 1, justifyContent: "center", alignItems: "center" }} */
     >
+      <Button onPress={() => alerrr()} title="soy la alerta" />
       <Button
         onPress={() => navigation.navigate("My Songbook")}
         title="Go back to my song book"
       />
       {/* <ActivityIndicator size='large'/> */}
 
-      <Text>First, search the song. You can add the artist too</Text>
+      <Text style={{ fontSize: 42 }}>(1) - 2 - 3 - 4</Text>
+
+      <Text>First, search the song. You can add the artist too:</Text>
       <TextInput
         onChangeText={(ev) => setToSearch(ev)}
         placeholder="michael jackson"
@@ -37,15 +49,27 @@ export default function Creator() {
       <Text>LISTA:</Text>
       <br />
       {found?.map((el, index) => (
-        <View key={index}>
-          <Text>Artist: {el.artist}</Text>
-          <Text>Song: {el.track}</Text>
-          <Text>Album: {el.album}</Text>
-          <Image
-            source={{ uri: `${el.cover}?apikey=${API_KEY}` }}
-            style={{ width: 400, height: 400 }}
-          />
-        </View>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Creator2", {
+              id_artist: el.id_artist,
+              id_album: el.id_album,
+              id_track: el.id_track,
+            })
+          }
+          key={index}
+        >
+          <View>
+            <Text style={{ fontSize: 20 }}>{el.artist}</Text>
+            <Text>{el.track}</Text>
+            <Text>Album: {el.album}</Text>
+            <Image
+              source={{ uri: `${el.cover}?apikey=${API_KEY}` }}
+              style={{ width: 400, height: 400 }}
+            />
+            <br />
+          </View>
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );

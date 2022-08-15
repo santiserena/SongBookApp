@@ -5,6 +5,7 @@ import MySongBook from "./components/MySongBook/MySongBook";
 import Explorer from "./components/Explorer/Explorer";
 import SettingsScreen from "./components/Settings/Settings";
 import Creator from "./components/Creator/Creator";
+import Creator2 from "./components/Creator/Creator2";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,6 +17,9 @@ export default function App() {
           headerShown: false,
         }}
       >
+        <Tab.Screen name="My Songbook" component={MySongBook} />
+        <Tab.Screen name="Explorer" component={Explorer} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
         <Tab.Screen
           name="Creator"
           component={Creator}
@@ -26,9 +30,14 @@ export default function App() {
             tabBarButton: () => null,
           }}
         />
-        <Tab.Screen name="My Songbook" component={MySongBook} />
-        <Tab.Screen name="Explorer" component={Explorer} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen
+          name="Creator2"
+          component={Creator2}
+          options={{
+            tabBarStyle: { display: "none" },
+            tabBarButton: () => null,
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
