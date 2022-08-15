@@ -16,6 +16,9 @@ export default function App() {
           headerShown: false,
         }}
       >
+        <Tab.Screen name="My Songbook" component={MySongBook} />
+        <Tab.Screen name="Explorer" component={Explorer} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
         <Tab.Screen
           name="Creator"
           component={Creator}
@@ -26,9 +29,6 @@ export default function App() {
             tabBarButton: () => null,
           }}
         />
-          <Tab.Screen name="My Songbook" component={MySongBook} />
-          <Tab.Screen name="Explorer" component={Explorer} />
-          <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

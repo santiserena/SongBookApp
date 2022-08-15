@@ -1,13 +1,15 @@
 import { useState } from "react";
 import axios from "react-native-axios";
 import { View, Text, Button, TextInput, ActivityIndicator } from "react-native-web";
+import {API_KEY} from "@env"
+
 
 export default function Creator() {
   const [toSearch, setToSearch] = useState("");
 
   const search = async () => {
     let res = await axios.get(
-      "https://api.happi.dev/v1/music?q=Get%20Lucky&limit=&apikey=0c08e7DktNviaZReOp8XSQooIY9iIMhAHKHazpQzI9w2osMaUfKy8Qmn&type=:type&lyrics=1"
+      `https://api.happi.dev/v1/music?q=Get%20Lucky&limit=&apikey=${API_KEY}&type=:type&lyrics=1`
     );
     console.log("soy el buscador", res.data);
   };
