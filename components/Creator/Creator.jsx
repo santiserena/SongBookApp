@@ -30,7 +30,7 @@ export default function Creator({ navigation }) {
   return (
     <ScrollView /* style={{ flex: 1, justifyContent: "center", alignItems: "center" }} */
     >
-      <Button onPress={() => alerrr()} title="soy la alerta" />
+      
       <Button
         onPress={() => navigation.navigate("My Songbook")}
         title="Go back to my song book"
@@ -42,7 +42,7 @@ export default function Creator({ navigation }) {
       <Text>First, search the song. You can add the artist too:</Text>
       <TextInput
         onChangeText={(ev) => setToSearch(ev)}
-        placeholder="michael jackson"
+        placeholder="Billie Jean"
       />
       <Button onPress={() => search()} title="See results" />
 
@@ -63,10 +63,14 @@ export default function Creator({ navigation }) {
             <Text style={{ fontSize: 20 }}>{el.artist}</Text>
             <Text>{el.track}</Text>
             <Text>Album: {el.album}</Text>
+
+            
             <Image
               source={{ uri: `${el.cover}?apikey=${API_KEY}` }}
               style={{ width: 400, height: 400 }}
             />
+
+            
             <br />
           </View>
         </TouchableOpacity>
