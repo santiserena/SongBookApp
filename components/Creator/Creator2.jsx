@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import reactNativeAxios from "react-native-axios";
 import { API_KEY } from "@env";
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, StyleSheet, View } from "react-native";
 import data from "../../demoApi";
 
 export default function Creator2({ route }) {
@@ -30,9 +30,15 @@ export default function Creator2({ route }) {
     while (ly.includes("\r")) {
       ly = ly.replace("\r", "");
     }
+    while (ly.includes("\n")) {
+      ly = ly.replace("\n", " /n ");
+    } 
     
-    let lyricsArray = ly.split(' ') 
-
+    let lyricsArray = ly.split(' ')
+    lyricsArray=lyricsArray.slice(0,lyricsArray.length-2);
+    
+    lyricsArray = lyricsArray.map((el) => ({ word: el, chords: "D-" }));
+    
     console.log('asi va quedando->\n', lyricsArray  );
     setLyrics(lyricsArray)
     //setLyrics(data.result.lyrics)
@@ -40,9 +46,38 @@ export default function Creator2({ route }) {
 
   return (
     <ScrollView>
-      <Text>{lyrics}</Text>
+      <br />
+      <View style={styles.container}>
+        {lyrics?.map((el, index) => (
+          <View key={index}>
+            {el.word === "/n" ? (
 
+              /* page breaks and line spacing */
+              <View style={{ /* borderWidth: 1, */ width: 10000}}></View>
+            ) : (
 
+              <View
+                style={{
+                  borderWidth: 1,
+                  height: 50,
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Text>{el.chords} </Text>
+                <Text style={{fontSize:18}}>{el.word} </Text>
+              </View>
+            )}
+          </View>
+        ))}
+      </View>
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  }
+})
