@@ -3,6 +3,9 @@ import { useState } from "react";
 
 
 
+
+
+
 export default function MySongBook({ navigation }) {
 
   const prueba = [
@@ -27,14 +30,22 @@ export default function MySongBook({ navigation }) {
   
   return (
     <ScrollView>
+
+
       <View style={styles.container}>
         {prueba.map((el, index) => (
-         
-            <View key = {index} style={{ borderWidth: 1, width: 150, height: 150, display:"flex", justifyContent:'flex-end' }}>
-              <Text style={{ fontSize: 42}}>{el.chord}</Text>
-              <Text style={{ fontSize: 42 }}>{el.word}</Text>
-            </View>
-          
+          <View
+            key={index}
+            style={{
+              borderWidth: 1,
+              height: 150,
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Text style={{ fontSize: 42 }}>{el.chord}</Text>
+            <Text style={{ fontSize: 42 }}>{el.word} </Text>
+          </View>
         ))}
       </View>
       {/* <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}> */}
@@ -47,10 +58,7 @@ export default function MySongBook({ navigation }) {
         placeholder="write.."
       />
       <Button onPress={() => search()} title="Search by artist or song name" />
-
-    
     </ScrollView>
-
   );
 }
 
