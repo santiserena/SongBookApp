@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import reactNativeAxios from "react-native-axios";
 import { API_KEY } from "@env";
-import { ScrollView, Text, StyleSheet, View } from "react-native";
+import { ScrollView, Text, StyleSheet, View, FlatList, Button, TextInput } from "react-native";
 import data from "../../demoApi";
 
 export default function Creator2({ route }) {
   const [lyrics, setLyrics] = useState([]); 
+  const [selectionPoint, setSelectionPoint] = useState (false)
+  const [inputChord,setInputChord] = useState ('')
 
 /* ESTO PONE EN Lyrics la letra de la cancion */
 /*   useEffect(() => {
@@ -39,33 +41,80 @@ export default function Creator2({ route }) {
     
     lyricsArray = lyricsArray.map((el) => ({ word: el, chords: "D-" }));
     
-    console.log('asi va quedando->\n', lyricsArray  );
     setLyrics(lyricsArray)
     //setLyrics(data.result.lyrics)
   },[]);
 
+  const selectionOfElementToChange = (el, index) => {
+    console.log('cambiar', el, 'index->', index);
+    setSelectionPoint(index)
+  }
+
+  const chordToAdd = (el, index) => {
+    console.log("elemento-> ", el, "ubicacion->", index, "acorde->", inputChord);
+
+   
+    // HACER AQUI EL CAMBIO EN LYRICS
+
+
+
+
+
+
+
+    setSelectionPoint(false);
+  };
+
   return (
     <ScrollView>
+      <View style={{ borderWidth: 1, width: "100%" }}>
+        <Text style={{ fontSize: 40 }}>1 - 2 - 3 - 4</Text>
+      </View>
+
       <br />
       <View style={styles.container}>
         {lyrics?.map((el, index) => (
           <View key={index}>
             {el.word === "/n" ? (
-
               /* page breaks and line spacing */
-              <View style={{ /* borderWidth: 1, */ width: 10000}}></View>
+              <View style={{ /* borderWidth: 1, */ width: 10000 }}></View>
             ) : (
-
               <View
                 style={{
                   borderWidth: 1,
-                  height: 50,
+                  height: 60,
                   display: "flex",
                   justifyContent: "flex-end",
                 }}
               >
-                <Text>{el.chords} </Text>
-                <Text style={{fontSize:18}}>{el.word} </Text>
+                {selectionPoint === index ? (
+                  <View>
+                    <TextInput
+                      onChangeText={(ev) => setInputChord(ev)}
+                      style={{ borderWidth: 1, backgroundColor: "white" }}
+                      placeholder="Write here.."
+                    />
+                    
+                      <Button
+                        onPress={() => chordToAdd(el, index)}
+                        title="Add"
+                        color="orange"
+                      />
+                      <Button
+                        onPress={() => setSelectionPoint(false)}
+                        title="Cancel"
+                        color="orange"
+                      />
+                    
+                  </View>
+                ) : (
+                  <Text>{el.chords}</Text>
+                )}
+                <Button
+                  onPress={() => selectionOfElementToChange(el, index)}
+                  title={el.word}
+                  style={{ fontSize: 18 }}
+                />
               </View>
             )}
           </View>
