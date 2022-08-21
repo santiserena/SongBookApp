@@ -19,14 +19,6 @@ export default function App() {
           headerShown: false,
         }}
       >
-        <Tab.Screen
-          name="LyricsManually"
-          component={ManuallyCreator}
-          options={{
-            tabBarStyle: { display: "none" },
-            tabBarButton: () => null,
-          }}
-        />
         <Tab.Screen name="My Songbook" component={MySongBook} />
         <Tab.Screen name="Explorer" component={Explorer} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
@@ -48,6 +40,14 @@ export default function App() {
               tabBarButton: () => null,
             }}
           />
+            <Tab.Screen
+              name="LyricsManually"
+              component={ManuallyCreator}
+              options={{
+                tabBarStyle: { display: "none" },
+                tabBarButton: () => null,
+              }}
+            />
       </Tab.Navigator>
     </NavigationContainer>
   );

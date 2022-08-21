@@ -10,29 +10,36 @@ export default function Creator2({ route, navigation }) {
   const [inputChord, setInputChord] = useState("");
 
   useEffect(() => {
-    reactNativeAxios
-      .get(
-        `https://api.happi.dev/v1/music/artists/${route.params.id_artist}/albums/${route.params.id_album}/tracks/${route.params.id_track}/lyrics?apikey=${API_KEY}`
-      )
-      //Each array element will be an object like this { word: "world", chords: "Cmaj7" }
-      .then((result) => {
-        let ly = result.data.result.lyrics;
 
+      function chartMaker(lyricText) {
+        let ly = lyricText;
         while (ly.includes("\r")) {
           ly = ly.replace("\r", "");
         }
         while (ly.includes("\n")) {
           ly = ly.replace("\n", " /n ");
         }
-
         let lyricsArray = ly.split(" ");
         lyricsArray = lyricsArray.slice(0, lyricsArray.length - 2);
         lyricsArray = lyricsArray.map((el) => ({ word: el, chords: "" }));
 
         setLyrics(lyricsArray);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+      }
+
+      if (route.params.manuallyEnteredSongLyrics) {
+        chartMaker(route.params.manuallyEnteredSongLyrics);
+      } else {
+        reactNativeAxios
+          .get(
+            `https://api.happi.dev/v1/music/artists/${route.params.id_artist}/albums/${route.params.id_album}/tracks/${route.params.id_track}/lyrics?apikey=${API_KEY}`
+          )
+          .then((result) => {
+            chartMaker(result.data.result.lyrics);
+          })
+          .catch((e) => console.log(e));
+      }
+
+  }, [route]);
 
   const selectionOfElementToChange = (index) => {
     setSelectionPoint(index);
@@ -47,6 +54,7 @@ export default function Creator2({ route, navigation }) {
   return (
     <ScrollView>
       <Button
+      /* CORREGIR PARA IR A BACK!!!!!!!!!!!! */
         onPress={() => navigation.navigate("Creator")}
         title="Go back"
       />
