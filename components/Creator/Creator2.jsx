@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import reactNativeAxios from "react-native-axios";
 import { API_KEY } from "@env";
 import { ScrollView, Text, StyleSheet, View, Button, TextInput } from "react-native";
-import data from "../../demoApi";
 
-export default function Creator2({ route }) {
+
+export default function Creator2({ route, navigation }) {
   const [lyrics, setLyrics] = useState([]);
   const [selectionPoint, setSelectionPoint] = useState(false);
   const [inputChord, setInputChord] = useState("");
