@@ -24,10 +24,13 @@ export default function MySongBook({ navigation }) {
         onPress={() => navigation.navigate("Creator")}
         title="+ (Add new song)"
       />
-      <br />
+      {/* <br /> */}
+
+      <Text>{"\n\n\n"}</Text>
+      
 
       <Text>MY SONG BOOK:</Text>
-      <br />
+      {/* <br /> */}
       <TextInput
         onChangeText={(ev) => onChangeText(ev)}
         placeholder="write.."

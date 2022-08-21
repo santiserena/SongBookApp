@@ -45,10 +45,10 @@ export default function Creator({ navigation }) {
         style={{borderWidth:1}}
       />
       <Button onPress={() => search()} title="See results" />
-      <br />
-      <Button onPress={() => navigation.navigate("LyricsManually")} title="Click here if you prefer to write it manually" />
+      {/* <br /> */}
+      <Button onPress={() => navigation.navigate("ManuallyCreator")} title="Click here if you prefer to write it manually" />
 
-      <br />
+      {/* <br /> */}
       {found?.map((el, index) => (
         <TouchableOpacity
           onPress={() =>
@@ -72,7 +72,7 @@ export default function Creator({ navigation }) {
               style={{ width: 400, height: 400 }}
             />
 
-            <br />
+            {/* <br /> */}
           </View>
         </TouchableOpacity>
       ))}

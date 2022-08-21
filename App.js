@@ -41,7 +41,7 @@ export default function App() {
             }}
           />
             <Tab.Screen
-              name="LyricsManually"
+              name="ManuallyCreator"
               component={ManuallyCreator}
               options={{
                 tabBarStyle: { display: "none" },

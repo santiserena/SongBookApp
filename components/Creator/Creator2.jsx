@@ -8,9 +8,12 @@ export default function Creator2({ route, navigation }) {
   const [lyrics, setLyrics] = useState([]);
   const [selectionPoint, setSelectionPoint] = useState(false);
   const [inputChord, setInputChord] = useState("");
+  const [backScreen, setBackScreen] = useState( null )
 
   useEffect(() => {
 
+      setBackScreen (route.params.manuallyEnteredSongLyrics? 'ManuallyCreator': 'Creator')
+      
       function chartMaker(lyricText) {
         let ly = lyricText;
         while (ly.includes("\r")) {
@@ -52,19 +55,19 @@ export default function Creator2({ route, navigation }) {
   };
 
   return (
+
     <ScrollView>
       <Button
-      /* CORREGIR PARA IR A BACK!!!!!!!!!!!! */
-        onPress={() => navigation.navigate("Creator")}
+        onPress={() => navigation.navigate(backScreen)}
         title="Go back"
       />
+      
       <View style={{ borderWidth: 1, width: "100%" }}>
         <Text style={{ fontSize: 40 }}>1 - (2) - 3 - 4</Text>
         <Text style={{ fontSize: 25 }}>{route.params.song}</Text>
         <Text style={{ fontSize: 15 }}>{route.params.artist} / Album: {route.params.album}</Text>
       </View>
 
-      <br />
       <View style={styles.container}>
         {lyrics?.map((el, index) => (
           <View key={index}>
