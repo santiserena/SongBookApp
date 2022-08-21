@@ -30,7 +30,6 @@ export default function Creator({ navigation }) {
   return (
     <ScrollView /* style={{ flex: 1, justifyContent: "center", alignItems: "center" }} */
     >
-      
       <Button
         onPress={() => navigation.navigate("My Songbook")}
         title="Go back to my song book"
@@ -46,7 +45,6 @@ export default function Creator({ navigation }) {
       />
       <Button onPress={() => search()} title="See results" />
 
-      <Text>LISTA:</Text>
       <br />
       {found?.map((el, index) => (
         <TouchableOpacity
@@ -55,22 +53,22 @@ export default function Creator({ navigation }) {
               id_artist: el.id_artist,
               id_album: el.id_album,
               id_track: el.id_track,
+              song: el.track,
+              artist: el.artist,
+              album: el.album,
             })
           }
           key={index}
         >
           <View>
-            <Text style={{ fontSize: 20 }}>{el.artist}</Text>
-            <Text>{el.track}</Text>
-            <Text>Album: {el.album}</Text>
+            <Text style={{ fontSize: 25 }}>{el.track}</Text>
+            <Text style={{ fontSize: 15 }}>{el.artist} / Album: {el.album}</Text>
 
-            
             <Image
               source={{ uri: `${el.cover}?apikey=${API_KEY}` }}
               style={{ width: 400, height: 400 }}
             />
 
-            
             <br />
           </View>
         </TouchableOpacity>
