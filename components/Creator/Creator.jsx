@@ -38,12 +38,15 @@ export default function Creator({ navigation }) {
 
       <Text style={{ fontSize: 42 }}>(1) - 2 - 3 - 4</Text>
 
-      <Text>First, search the song. You can add the artist too:</Text>
+      <Text>First, look up the lyrics of a song by its name. You can also add the name of the artist:</Text>
       <TextInput
         onChangeText={(ev) => setToSearch(ev)}
-        placeholder="Billie Jean"
+        placeholder="Billie Jean Michael Jackson"
+        style={{borderWidth:1}}
       />
       <Button onPress={() => search()} title="See results" />
+      <br />
+      <Button onPress={() => navigation.navigate("LyricsManually")} title="Click here if you prefer to write it manually" />
 
       <br />
       {found?.map((el, index) => (
