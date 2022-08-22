@@ -68,6 +68,7 @@ export default function Creator2({ route, navigation }) {
       <View style={{ borderWidth: 1, width: "100%" }}>
         <Text style={{ fontSize: 40 }}>1 - (2) - 3 - 4</Text>
         <Text style={{ fontSize: 25 }}>{route.params.song}</Text>
+        {/* MOSTRAR SOLO SI EL ALBUM EXISTE!!!!!!!!! */}
         <Text style={{ fontSize: 15 }}>{route.params.artist} / Album: {route.params.album}</Text>
       </View>
 
