@@ -58,7 +58,10 @@ export default function Creator2({ route, navigation }) {
 
     <ScrollView>
       <Button
-        onPress={() => navigation.navigate(backScreen)}
+        onPress={() => {
+          setLyrics([])
+          navigation.navigate(backScreen)
+        }}
         title="Go back"
       />
       
