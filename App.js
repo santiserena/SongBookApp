@@ -4,9 +4,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MySongBook from "./components/MySongBook/MySongBook";
 import Explorer from "./components/Explorer/Explorer";
 import SettingsScreen from "./components/Settings/Settings";
-import Creator from "./components/Creator/Creator";
-import Creator2 from "./components/Creator/Creator2";
-import ManuallyCreator from "./components/Creator/ManuallyCreator";
+//import Creator from "./components/Creator/Creator";
+//import Creator2 from "./components/Creator/Creator2";
+//import ManuallyCreator from "./components/Creator/ManuallyCreator";
+import CreationScreens from "./components/CreationScreens";
 
 
 const Tab = createBottomTabNavigator();
@@ -19,35 +20,37 @@ export default function App() {
           headerShown: false,
         }}
       >
-        <Tab.Screen
+        <Tab.Screen name="My Songbook" component={MySongBook} />
+        <Tab.Screen name="Explorer" component={Explorer} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="CreationScreens" component={CreationScreens} />
+
+        {/* <Tab.Screen
           name="ManuallyCreator"
           component={ManuallyCreator}
           options={{
             tabBarStyle: { display: "none" },
             tabBarButton: () => null,
           }}
-        />
-        <Tab.Screen name="My Songbook" component={MySongBook} />
-        <Tab.Screen name="Explorer" component={Explorer} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-        <Tab.Screen
+        /> */}
+       {/*  <Tab.Screen
           name="Creator"
           component={Creator}
           options={{
-            /* taking the tab out */
+            // taking the tab out 
             tabBarStyle: { display: "none" },
-            /* taking the icon out */
+            // taking the icon out 
             tabBarButton: () => null,
           }}
-        />
-          <Tab.Screen
+        /> */}
+         {/*  <Tab.Screen
             name="Creator2"
             component={Creator2}
             options={{
               tabBarStyle: { display: "none" },
               tabBarButton: () => null,
             }}
-          />
+          /> */}
       </Tab.Navigator>
     </NavigationContainer>
   );

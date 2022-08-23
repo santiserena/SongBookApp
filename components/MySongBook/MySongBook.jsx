@@ -21,7 +21,7 @@ export default function MySongBook({ navigation }) {
     <ScrollView>
       {/* <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}> */}
       <Button
-        onPress={() => navigation.navigate("Creator")}
+        onPress={() => navigation.navigate("CreationScreens")}
         title="+ (Add new song)"
       />
       {/* <br /> */}
