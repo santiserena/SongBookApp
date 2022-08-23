@@ -60,7 +60,7 @@ export default function Creator2({ route, navigation }) {
       <Button
         onPress={() => {
           setLyrics([])
-          navigation.navigate(backScreen)
+          navigation.goBack()
         }}
         title="Go back"
       />

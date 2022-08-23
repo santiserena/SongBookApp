@@ -29,7 +29,7 @@ export default function ManuallyCreator({ navigation }) {
 
   return (
     <ScrollView>
-      <Button onPress={() => navigation.navigate("Creator")} title="Go back" />
+      <Button onPress={() => navigation.goBack()} title="Go back" />
       <Text style={{ fontSize: 42 }}>(1) - 2 - 3 - 4</Text>
 
       <Text>Here you can write the lyrics:{"\n\n"}</Text>
