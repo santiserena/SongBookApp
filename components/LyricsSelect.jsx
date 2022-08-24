@@ -1,5 +1,3 @@
-//______________NUEVOO__________________________________
-
 import { useState } from "react";
 import axios from "react-native-axios";
 import {API_KEY} from "@env"
