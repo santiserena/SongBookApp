@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ScrollView, Text, Button, TextInput } from "react-native";
 
-export default function ManuallyCreator({ navigation }) {
+export default function LyricsManually({ navigation }) {
 
   const [lyrics, setLyrics] = useState('');
   const [songObject, setSongObject] = useState({})

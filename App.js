@@ -6,7 +6,7 @@ import Explorer from "./components/Explorer/Explorer";
 import SettingsScreen from "./components/Settings/Settings";
 //import Creator from "./components/Creator/Creator";
 //import Creator2 from "./components/Creator/Creator2";
-//import ManuallyCreator from "./components/Creator/ManuallyCreator";
+//import LyricsManually from "./components/Creator/LyricsManually";
 import CreationScreens from "./components/CreationScreens";
 
 
@@ -26,8 +26,8 @@ export default function App() {
         <Tab.Screen name="CreationScreens" component={CreationScreens} />
 
         {/* <Tab.Screen
-          name="ManuallyCreator"
-          component={ManuallyCreator}
+          name="LyricsManually"
+          component={LyricsManually}
           options={{
             tabBarStyle: { display: "none" },
             tabBarButton: () => null,

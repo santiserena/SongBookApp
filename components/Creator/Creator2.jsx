@@ -12,7 +12,7 @@ export default function Creator2({ route, navigation }) {
 
   useEffect(() => {
 
-      setBackScreen (route.params.manuallyEnteredSongLyrics? 'ManuallyCreator': 'Creator')
+      setBackScreen (route.params.manuallyEnteredSongLyrics? 'LyricsManually': 'Creator')
       
       function chartMaker(lyricText) {
         let ly = lyricText;
@@ -54,22 +54,28 @@ export default function Creator2({ route, navigation }) {
     setSelectionPoint(false);
   };
 
-  return (
+  const next = () =>{
+    console.log('paso info nomas');
+    navigation.navigate("Creator3");
+  }
 
+  return (
     <ScrollView>
       <Button
         onPress={() => {
-          setLyrics([])
-          navigation.goBack()
+          setLyrics([]);
+          navigation.goBack();
         }}
         title="Go back"
       />
-      
+
       <View style={{ borderWidth: 1, width: "100%" }}>
         <Text style={{ fontSize: 40 }}>1 - (2) - 3 - 4</Text>
         <Text style={{ fontSize: 25 }}>{route.params.song}</Text>
         {/* MOSTRAR SOLO SI EL ALBUM EXISTE!!!!!!!!! */}
-        <Text style={{ fontSize: 15 }}>{route.params.artist} / Album: {route.params.album}</Text>
+        <Text style={{ fontSize: 15 }}>
+          {route.params.artist} / Album: {route.params.album}
+        </Text>
       </View>
 
       <View style={styles.container}>
@@ -119,6 +125,9 @@ export default function Creator2({ route, navigation }) {
           </View>
         ))}
       </View>
+
+      <Button onPress={() => next()} title="Next" />
+
     </ScrollView>
   );
 }

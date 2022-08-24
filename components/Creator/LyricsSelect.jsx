@@ -46,7 +46,7 @@ export default function LyricsSelect({ navigation }) {
       />
       <Button onPress={() => search()} title="See results" />
       {/* <br /> */}
-      <Button onPress={() => navigation.navigate("ManuallyCreator")} title="Click here if you prefer to write it manually" />
+      <Button onPress={() => navigation.navigate("LyricsManually")} title="Click here if you prefer to write it manually" />
 
       {/* <br /> */}
       {found?.map((el, index) => (
