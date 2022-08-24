@@ -36,7 +36,7 @@ export default function LyricsSelect({ navigation }) {
       />
       {/* <ActivityIndicator size='large'/> */}
 
-      <Text style={{ fontSize: 42 }}>(1) - 2 - 3 - 4</Text>
+      <Text style={{ fontSize: 42 }}>(1) - 2 - 3</Text>
 
       <Text>First, look up the lyrics of a song by its name. You can also add the name of the artist:</Text>
       <TextInput
@@ -59,6 +59,8 @@ export default function LyricsSelect({ navigation }) {
               song: el.track,
               artist: el.artist,
               album: el.album,
+              image: el.cover
+         //     justLyrics:
             })
           }
           key={index}

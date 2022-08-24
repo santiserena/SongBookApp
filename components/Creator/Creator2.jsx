@@ -5,16 +5,17 @@ import { ScrollView, Text, StyleSheet, View, Button, TextInput } from "react-nat
 
 
 export default function Creator2({ route, navigation }) {
+  const [lyricsString, setLyricsString] = useState("");
   const [lyrics, setLyrics] = useState([]);
   const [selectionPoint, setSelectionPoint] = useState(false);
   const [inputChord, setInputChord] = useState("");
-  const [backScreen, setBackScreen] = useState( null )
+  
 
   useEffect(() => {
 
-      setBackScreen (route.params.manuallyEnteredSongLyrics? 'LyricsManually': 'Creator')
       
       function chartMaker(lyricText) {
+        setLyricsString (lyricText)
         let ly = lyricText;
         while (ly.includes("\r")) {
           ly = ly.replace("\r", "");
@@ -54,10 +55,20 @@ export default function Creator2({ route, navigation }) {
     setSelectionPoint(false);
   };
 
-  const next = () =>{
-    console.log('paso info nomas');
-    navigation.navigate("Creator3");
-  }
+  const next = () => {
+    console.log("paso info nomas");
+
+    let info = {
+      songName: route.params.song,
+      artist: route.params.artist,
+      album: route.params.album,
+      image: route.params.image,
+      justLyrics: lyricsString,
+      lyricsWithChords: lyrics,
+    };
+
+    navigation.navigate("Creator3", info);
+  };
 
   return (
     <ScrollView>
@@ -70,12 +81,11 @@ export default function Creator2({ route, navigation }) {
       />
 
       <View style={{ borderWidth: 1, width: "100%" }}>
-        <Text style={{ fontSize: 40 }}>1 - (2) - 3 - 4</Text>
+        <Text style={{ fontSize: 40 }}>1 - (2) - 3</Text>
+        
         <Text style={{ fontSize: 25 }}>{route.params.song}</Text>
-        {/* MOSTRAR SOLO SI EL ALBUM EXISTE!!!!!!!!! */}
-        <Text style={{ fontSize: 15 }}>
-          {route.params.artist} / Album: {route.params.album}
-        </Text>
+        <Text style={{ fontSize: 15 }}>Artist: {route.params.artist}</Text>
+        {route.params.album ? <Text>Album: {route.params.album}</Text> : null}
       </View>
 
       <View style={styles.container}>
@@ -127,7 +137,6 @@ export default function Creator2({ route, navigation }) {
       </View>
 
       <Button onPress={() => next()} title="Next" />
-
     </ScrollView>
   );
 }

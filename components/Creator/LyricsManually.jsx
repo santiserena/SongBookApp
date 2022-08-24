@@ -15,7 +15,7 @@ export default function LyricsManually({ navigation }) {
 
   const next = () => {
 
-    if (songObject.song && lyrics) {
+    if (songObject.song && songObject.artist && lyrics) {
 
       navigation.navigate("Creator2", {
         ...songObject,
@@ -44,7 +44,7 @@ export default function LyricsManually({ navigation }) {
         label
         style={{ borderWidth: 1 }}
         onChange={(ev) => handleChange(ev, "artist")}
-        placeholder="Artist"
+        placeholder="Artist *"
       />
 
       <TextInput
