@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ScrollView, Text, Button, TextInput } from "react-native";
+import { ScrollView, Text, Button, TextInput, Alert } from "react-native";
 
 export default function LyricsManually({ navigation }) {
 
@@ -24,7 +24,17 @@ export default function LyricsManually({ navigation }) {
       });
       
     } else {
-      console.log("ALERT: complete the required fields");
+
+      Alert.alert("Please,", "Complete the required fields", [
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+       /*  {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        }, */
+      ]);
+
+      console.log("complete the required fields");
     }
   };
 

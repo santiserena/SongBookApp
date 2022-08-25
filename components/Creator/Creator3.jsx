@@ -3,8 +3,8 @@ import { Button, ScrollView, Text } from "react-native";
 export default function Creator3({route, navigation}) {
   
 
-
-    console.log('info recibida->', route.params);
+// LUEGO SACAR PORQUE IMPRIME UN CHOCLO SINO!
+// console.log('info recibida->', route.params);
 
     const goback = () => {
       navigation.goBack();

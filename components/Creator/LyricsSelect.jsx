@@ -9,6 +9,11 @@ export default function LyricsSelect({ navigation }) {
 
   const search = async () => {
     if (!toSearch) {
+      
+      Alert.alert("Please,", "Write the name of a song. You can add the artist too", [
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      
+      ]);
       console.log(
         "ALERTA! write the name of a song. You can add the artist too"
       );
@@ -20,7 +25,14 @@ export default function LyricsSelect({ navigation }) {
 
         let res = await axios.get(urlMaker);
         if (res.data.success && res.data.length) setFound(res.data.result);
-        else console.log("ALERTA! No matches found");
+        else {
+          
+          Alert.alert("No matches found", "Try some different way", [
+            { text: "OK", onPress: () => console.log("OK Pressed") },
+          ]);
+
+          console.log("ALERTA! No matches found")
+        }
       } catch (error) {
         console.log(error);
       }
