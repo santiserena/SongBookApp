@@ -7,9 +7,10 @@ export default function LyricsManually({ navigation }) {
   const [songObject, setSongObject] = useState({})
 
   const handleChange = (ev, nam) =>{
+    console.log('pongo:', ev);
     setSongObject({
       ...songObject,
-      [nam] : ev.target.value
+      [nam] : ev
     })
   }
 
@@ -36,20 +37,20 @@ export default function LyricsManually({ navigation }) {
 
       <TextInput
         style={{ borderWidth: 1 }}
-        onChange={(ev) => handleChange(ev, "song")}
+        onChangeText={(ev) => handleChange(ev, "song")}
         placeholder="Song *"
       />
 
       <TextInput
         label
         style={{ borderWidth: 1 }}
-        onChange={(ev) => handleChange(ev, "artist")}
+        onChangeText={(ev) => handleChange(ev, "artist")}
         placeholder="Artist *"
       />
 
       <TextInput
         style={{ borderWidth: 1 }}
-        onChange={(ev) => handleChange(ev, "album")}
+        onChangeText={(ev) => handleChange(ev, "album")}
         placeholder="Album"
       />
 
@@ -66,6 +67,11 @@ export default function LyricsManually({ navigation }) {
       <Button onPress={() => next()} title="Next">
         <Text>Next -boton- revisar que no sea un string vacio </Text>
       </Button>
+
+      <Text>cancion: {songObject.song}</Text>
+      <Text>artist: {songObject.artist}</Text>
+      <Text>letra: {lyrics}</Text>
+
     </ScrollView>
   );
 }
