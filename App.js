@@ -1,56 +1,57 @@
-import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import MySongBook from "./components/MySongBook";
 
-function Explorer() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Soy el explorador</Text>
-    </View>
-  );
-}
+import MySongBook from "./components/MySongBook/MySongBook";
+import Explorer from "./components/Explorer/Explorer";
+import SettingsScreen from "./components/Settings/Settings";
+//import Creator from "./components/Creator/Creator";
+//import Creator2 from "./components/Creator/Creator2";
+//import LyricsManually from "./components/Creator/LyricsManually";
+import CreationScreens from "./components/CreationScreens";
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>soy el Setter</Text>
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         <Tab.Screen name="My Songbook" component={MySongBook} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
         <Tab.Screen name="Explorer" component={Explorer} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="CreationScreens" component={CreationScreens} />
+
+        {/* <Tab.Screen
+          name="LyricsManually"
+          component={LyricsManually}
+          options={{
+            tabBarStyle: { display: "none" },
+            tabBarButton: () => null,
+          }}
+        /> */}
+       {/*  <Tab.Screen
+          name="Creator"
+          component={Creator}
+          options={{
+            // taking the tab out 
+            tabBarStyle: { display: "none" },
+            // taking the icon out 
+            tabBarButton: () => null,
+          }}
+        /> */}
+         {/*  <Tab.Screen
+            name="Creator2"
+            component={Creator2}
+            options={{
+              tabBarStyle: { display: "none" },
+              tabBarButton: () => null,
+            }}
+          /> */}
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-/* import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>SongBook</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-}); */
