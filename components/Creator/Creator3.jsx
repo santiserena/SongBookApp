@@ -12,8 +12,10 @@ export default function Creator3({ route, navigation }) {
 
   //console.log("todouu", allInfo);
 
+
   return (
     <ScrollView>
+
 
       <Button
         onPress={() => {
