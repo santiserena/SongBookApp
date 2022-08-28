@@ -56,7 +56,6 @@ export default function Creator2({ route, navigation }) {
   };
 
   const next = () => {
-    console.log("paso info nomas");
 
     let info = {
       songName: route.params.song,
