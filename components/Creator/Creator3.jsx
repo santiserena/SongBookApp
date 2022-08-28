@@ -10,6 +10,7 @@ export default function Creator3({route, navigation}) {
       navigation.goBack();
     }; 
 
+    console.log(route.params);
 
     return (
       <ScrollView>

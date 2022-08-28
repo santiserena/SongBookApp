@@ -7,7 +7,6 @@ export default function LyricsManually({ navigation }) {
   const [songObject, setSongObject] = useState({})
 
   const handleChange = (ev, nam) =>{
-    console.log('pongo:', ev);
     setSongObject({
       ...songObject,
       [nam] : ev
@@ -41,7 +40,7 @@ export default function LyricsManually({ navigation }) {
   return (
     <ScrollView>
       <Button onPress={() => navigation.goBack()} title="Go back" />
-      <Text style={{ fontSize: 42 }}>(1) - 2 - 3 - 4</Text>
+      <Text style={{ fontSize: 42 }}>(1) - 2 - 3</Text>
 
       <Text>Here you can write the lyrics:{"\n\n"}</Text>
 
