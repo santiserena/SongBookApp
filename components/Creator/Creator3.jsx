@@ -10,13 +10,13 @@ export default function Creator3({ route, navigation }) {
     navigation.goBack();
   };
 
-  //console.log("todouu", allInfo);
-
+  const saveSong = () => {
+    let toSend = {...allInfo, email: 'mail@harcodeado.com'} //luego el mail ponerlo en el set state
+    console.log("todouu", toSend);
+  }
 
   return (
     <ScrollView>
-
-
       <Button
         onPress={() => {
           goback();
@@ -40,8 +40,15 @@ export default function Creator3({ route, navigation }) {
       </Picker>
 
       <Text>
-        {"\n"}Agregar  foto si quiere. vista preliminar de letra con acordes{" "}
+        {"\n"}Agregar foto si quiere. vista preliminar de letra con acordes{" "}
       </Text>
+
+      <Button
+        onPress={() => {
+          saveSong();
+        }}
+        title="Save song!"
+      />
     </ScrollView>
   );
 }
