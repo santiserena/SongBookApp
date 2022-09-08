@@ -10,6 +10,32 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+//GIVE ARRAY WITH ALL USERS
+router.get("/users", async (req, res, next) => {
+  try {
+    let usersArray = await Users.findAll({
+        include: Songs
+    });
+    if (usersArray) res.send(usersArray)
+    else res.send('there are no users yet') 
+  } catch (error) {
+    next(error);
+  }
+});
+
+//GIVE ARRAY WITH ALL SONGS
+router.get("/charts", async (req, res, next) => {
+    try {
+      let songsArray = await Songs.findAll();
+      if (songsArray) res.send(songsArray)
+      else res.send('there are no songs yet') 
+    } catch (error) {
+      next(error);
+    }
+  });
+
+//GIVE ARRAY WITH SONGBOOK!!!!!!!!!!!!!!!  
+
 // USER CREATOR
 router.post("/createuser", async (req, res, next) => {
   try {
@@ -34,6 +60,7 @@ router.post("/createuser", async (req, res, next) => {
   "personalPhoto": "adadada"
 } */
 
+
 });
 
 // CHART CREATOR
@@ -48,29 +75,28 @@ router.post ('/createchart', async (req, res, next) => {
         
         if (us) {
             
-        //crear registro de cancion y vincularla al user     
-            res.send (us.email)
-        }
-        res.send ('user not found')
-       /*  
+            let song = await Songs.create({
+                name: name,
+                album: album,
+                artist: artist,
+                chartCreator: chartCreator,
+                lyrics: lyrics,
+                lyricsAndChords: lyricsAndChords,
+                share: share,
+                image: image
+            })
+
+            //link song with creator     
+            await us.addSongs (song)
             
-            if(temperaments){
-                for (let e of temperaments) {
-                    let foundElement = await Temper.findOne({
-                        where:{name: e}
-                    });
-                    
-                   await dogCreate.addTemper (foundElement.id)
-                }
-                
-                res.send ('Breed added'); 
-            }
-            else res.send ('Breed added without temperaments') 
+            res.send ('chart created')
         }
-        else res.send ('The breed is already registered')  */
+        else res.send ('user not found')
+     
     } catch (error) {
         next(error);
     }
 })
+
 
 module.exports = router;
