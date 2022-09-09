@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button, ScrollView, Text } from "react-native";
 import {Picker} from '@react-native-picker/picker';
+import axios from "react-native-axios";
+
 
 export default function Creator3({ route, navigation }) {
   const [shareMusicTable, setShareMusicTable] = useState(true);
@@ -10,9 +12,16 @@ export default function Creator3({ route, navigation }) {
     navigation.goBack();
   };
 
-  const saveSong = () => {
-    let toSend = {...allInfo, email: 'mail@harcodeado.com'} //luego el mail ponerlo en el set state
-    console.log("todouu", toSend);
+  const saveSong = async () => {
+    let toSend = {...allInfo, chartCreator: 'mmail@harcodeadoo.com'} //luego el mail ponerlo en el set state
+    
+    console.log("todoo", toSend);
+    //let us = await axios ('http://localhost:3001/user')
+    let result = await axios.post ('http://localhost:3001/createchart', toSend )
+   
+    //let res = await axios.get('http://localhost:3001/users');
+    
+    console.log('result-------->>', result.data);
   }
 
   return (

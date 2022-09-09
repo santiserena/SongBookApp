@@ -74,7 +74,7 @@ router.post ('/createchart', async (req, res, next) => {
         })
         
         if (us) {
-            
+            //CONTROLAR QUE CDO SE MANDA ALGUNOS NOMBRES VIENEN DISTINTOS!!
             let song = await Songs.create({
                 name: name,
                 album: album,
