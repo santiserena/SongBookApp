@@ -67,21 +67,21 @@ router.post("/createuser", async (req, res, next) => {
 router.post ('/createchart', async (req, res, next) => {
     try {       
         
-        const {name, album, artist, chartCreator, lyrics, lyricsAndChords, share, image} = req.body;
-
+        const {songName, album, artist, chartCreator, justLyrics, lyricsWithChords, share, image} = req.body;
+console.log('llega----------------->>>', req.body);
         let us = await Users.findOne({
             where: {email: chartCreator}
         })
         
         if (us) {
-            //CONTROLAR QUE CDO SE MANDA ALGUNOS NOMBRES VIENEN DISTINTOS!!
+            
             let song = await Songs.create({
-                name: name,
+                name: songName,
                 album: album,
                 artist: artist,
                 chartCreator: chartCreator,
-                lyrics: lyrics,
-                lyricsAndChords: lyricsAndChords,
+                lyrics: justLyrics,
+                lyricsAndChords: lyricsWithChords,
                 share: share,
                 image: image
             })
@@ -94,6 +94,7 @@ router.post ('/createchart', async (req, res, next) => {
         else res.send ('user not found')
      
     } catch (error) {
+      console.log('ACA PASO ALGOOOOOOOOOOOO');
         next(error);
     }
 })
