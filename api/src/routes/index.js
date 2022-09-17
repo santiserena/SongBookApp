@@ -68,7 +68,7 @@ router.post ('/createchart', async (req, res, next) => {
     try {       
         
         const {songName, album, artist, chartCreator, justLyrics, lyricsWithChords, share, image} = req.body;
-console.log('llega----------------->>>', req.body);
+console.log('llega----------------->>>', songName);
         let us = await Users.findOne({
             where: {email: chartCreator}
         })
