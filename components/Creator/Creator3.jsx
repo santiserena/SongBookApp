@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, ScrollView, Text } from "react-native";
+import { Alert, Button, ScrollView, Text } from "react-native";
 import {Picker} from '@react-native-picker/picker';
 import axios from "react-native-axios";
 
@@ -16,16 +16,25 @@ export default function Creator3({ route, navigation }) {
     try {
       let toSend = {...allInfo, chartCreator: 'mmail@harcodeadoo.com'} //luego el mail ponerlo en el set state
     
-
-      //NO FUNCIONA DESDE EL CELU !!!
-      //let result = await axios.get ('http://192.168.0.81:3001/users')
       let result = await axios.post ('http://192.168.0.81:3001/createchart', toSend )
-     
 
-      // AGREGAR ALERTAS!
+      if (result.data === "chart created") {
+        console.log("Song added successfully!");
+        Alert.alert(allInfo.songName, "Song added successfully!", [
+          { text: "OK", onPress: () => {
+            console.log("OK Pressed") 
+            navigation.popToTop();
+            navigation.navigate("My Songbook");
+        }},
+        ]);
 
-      if (result.data === 'chart created') console.log('Song added successfully');
-      else console.log('Not added ->', result.data);
+
+      } else {
+        console.log("Not added ->", result.data);
+        Alert.alert("Something went wrong!", result.data, [
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]);
+      }
       
     } catch (error) {
       console.log(error);
