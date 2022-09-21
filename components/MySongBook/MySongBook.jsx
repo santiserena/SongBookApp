@@ -1,5 +1,6 @@
 import { View, Text, TextInput, Button, ScrollView, StyleSheet } from "react-native";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 
 
@@ -8,6 +9,8 @@ import { useState } from "react";
 
 export default function MySongBook({ navigation }) {
   const [find, setFind] = useState("");
+
+  let userMail = useSelector (state => state.mail)
 
   const onChangeText = (ev) => {
     setFind(ev);
@@ -24,11 +27,12 @@ export default function MySongBook({ navigation }) {
       <Button
         onPress={() => navigation.navigate("CreationScreens")}
         title="+ (Add new song)"
-      />
+        />
       {/* <br /> */}
 
       <Text>{"\n\n\n"}</Text>
       
+        <Text>este es el mail: {userMail}</Text>
 
       <Text>MY SONG BOOK:</Text>
       {/* <br /> */}

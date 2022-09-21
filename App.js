@@ -8,18 +8,22 @@ import SettingsScreen from "./components/Settings/Settings";
 //import Creator2 from "./components/Creator/Creator2";
 //import LyricsManually from "./components/Creator/LyricsManually";
 import CreationScreens from "./components/CreationScreens";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+    <Provider store = {store}>
+
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
         }}
-      >
+        >
         <Tab.Screen name="My Songbook" component={MySongBook} />
         <Tab.Screen name="Explorer" component={Explorer} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
@@ -53,5 +57,6 @@ export default function App() {
           /> */}
       </Tab.Navigator>
     </NavigationContainer>
+          </Provider>
   );
 }
