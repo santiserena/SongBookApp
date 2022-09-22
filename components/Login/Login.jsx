@@ -1,8 +1,21 @@
+import { useState } from "react";
 import { Text, TextInput, Button, ScrollView } from "react-native";
+import { useDispatch } from "react-redux";
 
 export default function Login({ navigation }) {
+
+  const [loguinData, setLoginData] = useState ({
+    mail: '',
+    password: ''
+  })
+
+ // const dispatch = useDispatch()
+//hacer action que renueve estado global mail 
+
   const verify = () => {
-    console.log("verificoo");
+    console.log("verificoo", loguinData);
+    //verificar
+    //MANDAT ACTION CON MAIL A REDUCER
   };
 
   return (
@@ -12,12 +25,12 @@ export default function Login({ navigation }) {
       <Text>Email:</Text>
       <TextInput
         style={{ borderWidth: 1 }}
-        onChangeText={(ev) => handleChange(ev)}
+        onChangeText={(ev) => setLoginData({ ...loguinData, mail: ev })}
       />
       <Text>Password:</Text>
       <TextInput
         style={{ borderWidth: 1 }}
-        onChangeText={(ev) => handleChange(ev)}
+        onChangeText={(ev) => setLoginData({ ...loguinData, password: ev })}
       />
       <Button onPress={() => verify()} title="Continue" />
 
