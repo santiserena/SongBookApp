@@ -4,13 +4,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MySongBook from "./components/MySongBook/MySongBook";
 import Explorer from "./components/Explorer/Explorer";
 import SettingsScreen from "./components/Settings/Settings";
-import Login from "./components/Login";
-//import Creator from "./components/Creator/Creator";
-//import Creator2 from "./components/Creator/Creator2";
-//import LyricsManually from "./components/Creator/LyricsManually";
 import CreationScreens from "./components/CreationScreens";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import LoginScreens from "./components/Login/LoginScreens";
 
 
 const Tab = createBottomTabNavigator();
@@ -25,7 +22,7 @@ export default function App() {
             headerShown: false,
           }}
           >
-          <Tab.Screen name="Login" component={Login} />
+          <Tab.Screen name="LoginScreens" component={LoginScreens} />
           <Tab.Screen name="My Songbook" component={MySongBook} />
           <Tab.Screen name="Explorer" component={Explorer} />
           <Tab.Screen name="Settings" component={SettingsScreen} />

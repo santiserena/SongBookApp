@@ -2,25 +2,27 @@ import { useState } from "react";
 import { Alert, Button, ScrollView, Text } from "react-native";
 import {Picker} from '@react-native-picker/picker';
 import axios from "react-native-axios";
+import { useSelector } from "react-redux";
 
 
 export default function Creator3({ route, navigation }) {
   const [shareMusicTable, setShareMusicTable] = useState(true);
   const [allInfo, setAllInfo] = useState({ ...route.params, share: true });
+  const userMail = useSelector ( state => state.mail)
 
   const goback = () => {
     navigation.goBack();
   };
-
+//HECER QUE GUARDE LAS CANCIONES EN EL MAIL QUE ESTA EN EL REDUCER
   const saveSong = async () => {
     try {
-      let toSend = {...allInfo, chartCreator: 'mmail@harcodeadoo.com'} //luego el mail ponerlo en el set state
+      let toSend = {...allInfo, chartCreator: userMail} //luego el mail ponerlo en el set state
     
       let result = await axios.post ('http://192.168.0.81:3001/createchart', toSend )
 
-      if (result.data === "chart created") {
+      if (result.data === "chart created") {  
         console.log("Song added successfully!");
-        Alert.alert(allInfo.songName, "Song added successfully!", [
+        Alert.alert(allInfo.songName, 'Song added successfully!', [
           { text: "OK", onPress: () => {
             console.log("OK Pressed") 
             navigation.popToTop();

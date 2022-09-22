@@ -1,5 +1,3 @@
-//______________NUEVOO__________________________________
-
 import { createStackNavigator } from "@react-navigation/stack";
 import LyricsManually from "./Creator/LyricsManually";
 import Creator2 from "./Creator/Creator2";
