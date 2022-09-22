@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Text, TextInput, Button, ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
+import { getUserMail } from "../../redux/actions";
 
 export default function Login({ navigation }) {
 
@@ -9,13 +10,15 @@ export default function Login({ navigation }) {
     password: ''
   })
 
- // const dispatch = useDispatch()
-//hacer action que renueve estado global mail 
+  const dispatch = useDispatch()
 
   const verify = () => {
     console.log("verificoo", loguinData);
-    //verificar
-    //MANDAT ACTION CON MAIL A REDUCER
+
+    //VERIFICAR CTA AQUÍ!!!!!! si esta bien, mandar al estado global como esta abajo
+
+
+    dispatch(getUserMail(loguinData.mail))
   };
 
   return (

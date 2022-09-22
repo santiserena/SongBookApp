@@ -34,7 +34,39 @@ router.get("/charts", async (req, res, next) => {
     }
   });
 
-//GIVE ARRAY WITH SONGBOOK!!!!!!!!!!!!!!!  
+//GIVE ARRAY WITH SONGBOOK (JUST WITH THE USER I WANT) 
+
+router.get("/songbook/:mail", async (req, res, next) => {
+  try {
+
+    let songsArray = await Users.findOne({
+      where: { email: req.params.mail },
+      include: Songs,
+    });
+
+    if (songsArray) res.send(songsArray.songs);
+    else res.send("there are no songs or user registered yet");
+
+  } catch (error) {
+    next(error);
+  }
+});
+
+//GIVE ARRAY WITH UNCKNOWN SONGS TO EXPLORE
+router.get("/explore/:mail", async (req, res, next) => {
+  try {
+
+    let songsArray = await Songs.findAll({
+      exclude: { chartCreator: !req.params.mail }
+    });
+
+    if (songsArray) res.send(songsArray);
+    else res.send("there are no songs or user registered yet");
+
+  } catch (error) {
+    next(error);
+  }
+});
 
 // USER CREATOR
 router.post("/createuser", async (req, res, next) => {
@@ -68,7 +100,7 @@ router.post ('/createchart', async (req, res, next) => {
     try {       
         
         const {songName, album, artist, chartCreator, justLyrics, lyricsWithChords, share, image} = req.body;
-console.log('llega----------------->>>', songName);
+
         let us = await Users.findOne({
             where: {email: chartCreator}
         })

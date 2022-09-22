@@ -1,6 +1,7 @@
-export function getUserMail(pers){     //probar en funcion flecha
-    return{
-        type: 'GET_USER_EMAIL',
-        payload: pers
-    }
-} 
+export function getUserMail(mail) {
+  
+  return {
+    type: "USER_EMAIL",
+    payload: mail,
+  };
+}

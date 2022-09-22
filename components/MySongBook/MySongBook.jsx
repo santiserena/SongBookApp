@@ -1,16 +1,25 @@
-import { View, Text, TextInput, Button, ScrollView, StyleSheet } from "react-native";
-import { useState } from "react";
+import { Text, TextInput, Button, ScrollView, StyleSheet } from "react-native";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
-
+import axios from "react-native-axios";
 
 
 
 
 export default function MySongBook({ navigation }) {
   const [find, setFind] = useState("");
+  const [songBookArray, setSongBookArray] = useState([]);
 
-  let userMail = useSelector (state => state.mail)
+  let userMail = useSelector((state) => state.mail);
+
+  //DEBE RECARGARSE LUEGO DE AGRAGAR UNA CAMCION. IDEM EN EL EXPLORER
+  useEffect(() => {
+    axios
+      .get(`http://192.168.0.81:3001/songbook/${userMail}`)
+      .then((result) => setSongBookArray(result.data))
+      .catch((e) => console.log(e));
+  }, []);
+
 
   const onChangeText = (ev) => {
     setFind(ev);
@@ -23,16 +32,15 @@ export default function MySongBook({ navigation }) {
   return (
     <ScrollView>
       {/* <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}> */}
-      <Text>{'\n'}</Text>
+      <Text>{"\n"}</Text>
       <Button
         onPress={() => navigation.navigate("CreationScreens")}
         title="+ (Add new song)"
-        />
-      {/* <br /> */}
+      />
 
       <Text>{"\n\n\n"}</Text>
-      
-        <Text>este es el mail: {userMail}</Text>
+
+      <Text>Welcome: {userMail}</Text>
 
       <Text>MY SONG BOOK:</Text>
       {/* <br /> */}
@@ -41,6 +49,22 @@ export default function MySongBook({ navigation }) {
         placeholder="write.."
       />
       <Button onPress={() => search()} title="Search by artist or song name" />
+
+      <Text>{"\n\n"}</Text>
+
+      {songBookArray?.map((el) => (
+        <Text key={el.id}>
+          Song: {el.name}
+          {"\n"}
+          Album: {el.album}
+          {"\n"}
+          <Button
+            onPress={() => navigation.navigate("")}   /* ACA VA EL NVO SCREEN Q MUESTRA CANCION */
+            title="Open"
+          />
+          {"\n"}
+        </Text>
+      ))}
     </ScrollView>
   );
 }
