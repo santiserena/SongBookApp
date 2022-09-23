@@ -1,4 +1,4 @@
-import { Text, TextInput, Button, ScrollView, StyleSheet } from "react-native";
+import { Text, TextInput, Button, ScrollView, StyleSheet, Alert } from "react-native";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "react-native-axios";
@@ -30,16 +30,27 @@ export default function MySongBook({ navigation }) {
     console.log("luego buscare en mi cancionero->", find);
   };
 
-  async function erase (id) {
-    console.log('BOraar la-> ', id);
+  async function erase(id) {
 
-    let result = (await axios.delete(`http://192.168.0.81:3001/erase/${id}`)).data
-      
-    console.log('resultado--->', result);
-// FUNCIONA AHORA TENGO QUE RECARGAR EL SCREEN Y PONER UN ALERTA DE CONFIRMACION
-
-    
-
+    Alert.alert(
+      "Are you sure you want to delete this song?",
+      "Once done, you can't go back",
+      [
+        {
+          text: "Yes",
+          onPress: async () => {
+            console.log("OK Pressasasdsadasdadased");
+            let result = (await axios.delete(`http://192.168.0.81:3001/erase/${id}`)).data;
+            console.log("Result-->", result);
+          },
+        },
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Presasdasdasdasdadadsed"),
+          style: "cancel",
+        },
+      ]
+    );
   }
 
   return (

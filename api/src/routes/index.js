@@ -35,7 +35,6 @@ router.get("/charts", async (req, res, next) => {
   });
 
 //GIVE ARRAY WITH SONGBOOK (JUST WITH THE USER I WANT) 
-
 router.get("/songbook/:mail", async (req, res, next) => {
   try {
 
@@ -132,22 +131,19 @@ router.post ('/createchart', async (req, res, next) => {
 })
 
 // DELETE SONGS BY ID
-
-router.delete('/erase/:id', async (req, res, next) => {
-
+router.delete("/erase/:id", async (req, res, next) => {
   try {
-    let id = req.params.id
-  
+    let id = req.params.id;
+
     let target = await Songs.destroy({
-      where: {id: id}
+      where: { id: id },
     });
 
-   res.send ('successful operation')
-    
+    res.send("successful operation");
   } catch (error) {
     console.log(error);
   }
-})
+});
 
 
 module.exports = router;
