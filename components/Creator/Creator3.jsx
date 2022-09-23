@@ -25,8 +25,9 @@ export default function Creator3({ route, navigation }) {
         Alert.alert(allInfo.songName, 'Song added successfully!', [
           { text: "OK", onPress: () => {
             console.log("OK Pressed") 
-            navigation.popToTop();
+            navigation.popToTop()
             navigation.navigate("My Songbook");
+          
         }},
         ]);
 

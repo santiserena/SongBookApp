@@ -15,9 +15,10 @@ export default function MySongBook({ navigation }) {
   //DEBE RECARGARSE LUEGO DE AGRAGAR UNA CAMCION. IDEM EN EL EXPLORER
   useEffect(() => {
     axios
-      .get(`http://192.168.0.81:3001/songbook/${userMail}`)
-      .then((result) => setSongBookArray(result.data))
-      .catch((e) => console.log(e));
+    .get(`http://192.168.0.81:3001/songbook/${userMail}`)
+    .then((result) => setSongBookArray(result.data))
+    .catch((e) => console.log(e));
+    //console.log('ENTRE AL USE EFFECT');
   }, []);
 
 

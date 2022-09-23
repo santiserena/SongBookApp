@@ -14,17 +14,24 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <Provider store = {store}>
-
+    <Provider store={store}>
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
             headerShown: false,
           }}
-          >
+        >
           <Tab.Screen name="LoginScreens" component={LoginScreens} />
-          <Tab.Screen name="My Songbook" component={MySongBook} />
-          <Tab.Screen name="Explorer" component={Explorer} />
+          <Tab.Screen
+            name="My Songbook"
+            component={MySongBook}
+            options={{ unmountOnBlur: true }} // this option reload every time we go there
+          />
+          <Tab.Screen
+            name="Explorer"
+            component={Explorer}
+            options={{ unmountOnBlur: true }}
+          />
           <Tab.Screen name="Settings" component={SettingsScreen} />
           <Tab.Screen name="CreationScreens" component={CreationScreens} />
 
@@ -36,7 +43,7 @@ export default function App() {
               tabBarButton: () => null,
             }}
           /> */}
-        {/*  <Tab.Screen
+          {/*  <Tab.Screen
             name="Creator"
             component={Creator}
             options={{
@@ -56,7 +63,6 @@ export default function App() {
             /> */}
         </Tab.Navigator>
       </NavigationContainer>
-
     </Provider>
   );
 }
