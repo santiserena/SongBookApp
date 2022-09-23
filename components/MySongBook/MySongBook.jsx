@@ -19,7 +19,7 @@ export default function MySongBook({ navigation }) {
     .then((result) => setSongBookArray(result.data))
     .catch((e) => console.log(e));
     //console.log('ENTRE AL USE EFFECT');
-  }, []);
+  }, [erase]);
 
 
   const onChangeText = (ev) => {
@@ -29,6 +29,18 @@ export default function MySongBook({ navigation }) {
   const search = () => {
     console.log("luego buscare en mi cancionero->", find);
   };
+
+  async function erase (id) {
+    console.log('BOraar la-> ', id);
+
+    let result = (await axios.delete(`http://192.168.0.81:3001/erase/${id}`)).data
+      
+    console.log('resultado--->', result);
+// FUNCIONA AHORA TENGO QUE RECARGAR EL SCREEN Y PONER UN ALERTA DE CONFIRMACION
+
+    
+
+  }
 
   return (
     <ScrollView>
@@ -62,6 +74,11 @@ export default function MySongBook({ navigation }) {
           <Button
             onPress={() => navigation.navigate("")}   /* ACA VA EL NVO SCREEN Q MUESTRA CANCION */
             title="Open"
+          />
+          {"\n"}
+          <Button
+            onPress={()=>erase(el.id)}   
+            title="Delete"
           />
           {"\n"}
         </Text>

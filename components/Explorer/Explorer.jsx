@@ -7,7 +7,7 @@ export default function Explorer() {
   const [exploreArray, setExploreArray] = useState([]);
 
   useEffect(() => {
-    axios
+    axios // LUEGO PORNER EL MAIL NO HARCODEADO!!!!
       .get(`http://192.168.0.81:3001/explore/vincula@vincula.com`)
       .then((result) => setExploreArray(result.data))
       .catch((e) => console.log(e));
