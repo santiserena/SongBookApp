@@ -19,7 +19,7 @@ export default function MySongBook({ navigation }) {
     .then((result) => setSongBookArray(result.data))
     .catch((e) => console.log(e));
     //console.log('ENTRE AL USE EFFECT');
-  }, [erase]);
+  }, []);
 
 
   const onChangeText = (ev) => {
@@ -39,14 +39,14 @@ export default function MySongBook({ navigation }) {
         {
           text: "Yes",
           onPress: async () => {
-            console.log("OK Pressasasdsadasdadased");
+            console.log("OK Pressed");
             let result = (await axios.delete(`http://192.168.0.81:3001/erase/${id}`)).data;
             console.log("Result-->", result);
           },
         },
         {
           text: "Cancel",
-          onPress: () => console.log("Cancel Presasdasdasdasdadadsed"),
+          onPress: () => console.log("Cancel Pressed"),
           style: "cancel",
         },
       ]
@@ -81,6 +81,8 @@ export default function MySongBook({ navigation }) {
           Song: {el.name}
           {"\n"}
           Album: {el.album}
+          {"\n"}
+          Chart creator: {el.chartCreator}
           {"\n"}
           <Button
             onPress={() => navigation.navigate("")}   /* ACA VA EL NVO SCREEN Q MUESTRA CANCION */

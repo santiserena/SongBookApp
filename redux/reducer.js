@@ -1,5 +1,5 @@
 const initialstate = {
-    mail: 'sarasa', // user for login
+    mail: 'mmail@harcodeadoo.com', // user for login
 }
 
 export default function rootReducer (state = initialstate, action) {

@@ -55,8 +55,10 @@ router.get("/songbook/:mail", async (req, res, next) => {
 router.get("/explore/:mail", async (req, res, next) => {
   try {
 
+
+    //AREGLEARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
     let songsArray = await Songs.findAll({
-      exclude: { chartCreator: !req.params.mail }
+      exclude: { chartCreator: req.params.mail }
     });
 
     if (songsArray) res.send(songsArray);
