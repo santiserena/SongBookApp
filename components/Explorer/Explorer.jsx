@@ -3,7 +3,7 @@ import { ScrollView, Text, Image, Button, Alert } from "react-native";
 import axios from "react-native-axios";
 import { useSelector } from "react-redux";
 
-export default function Explorer() {
+export default function Explorer({navigation}) {
 
   const [exploreArray, setExploreArray] = useState([]);
   let userMail = useSelector((state) => state.mail);
@@ -56,7 +56,7 @@ export default function Explorer() {
           Chart creator: {el.chartCreator}
           {"\n"}
           <Button
-            onPress={() => navigation.navigate("")}   /* ACA VA EL NVO SCREEN Q MUESTRA CANCION */
+            onPress={() => navigation.navigate("PlaySong", {el})}   
             title="Open"
           />
           {"\n"}

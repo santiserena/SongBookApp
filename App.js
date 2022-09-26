@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import MySongBook from "./components/MySongBook/MySongBook";
 import Explorer from "./components/Explorer/Explorer";
 import SettingsScreen from "./components/Settings/Settings";
@@ -8,6 +7,7 @@ import CreationScreens from "./components/CreationScreens";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import LoginScreens from "./components/Login/LoginScreens";
+import PlaySong from "./components/PlaySong/PlaySong";
 
 
 const Tab = createBottomTabNavigator();
@@ -34,6 +34,7 @@ export default function App() {
           />
           <Tab.Screen name="Settings" component={SettingsScreen} />
           <Tab.Screen name="CreationScreens" component={CreationScreens} />
+          <Tab.Screen name="PlaySong" component={PlaySong} />
 
           {/* <Tab.Screen
             name="LyricsManually"

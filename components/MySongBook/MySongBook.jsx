@@ -4,9 +4,6 @@ import { useSelector } from "react-redux";
 import axios from "react-native-axios";
 
 
-
-
-
 export default function MySongBook({ navigation }) {
   const [find, setFind] = useState("");
   const [songBookArray, setSongBookArray] = useState([]);
@@ -57,6 +54,8 @@ export default function MySongBook({ navigation }) {
     );
   }
 
+
+
   return (
     <ScrollView>
       {/* <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}> */}
@@ -89,7 +88,7 @@ export default function MySongBook({ navigation }) {
           Chart creator: {el.chartCreator}
           {"\n"}
           <Button
-            onPress={() => navigation.navigate("")}   /* ACA VA EL NVO SCREEN Q MUESTRA CANCION */
+            onPress={() => navigation.navigate("PlaySong", {el})}   
             title="Open"
           />
           {"\n"}
