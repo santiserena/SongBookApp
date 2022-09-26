@@ -55,11 +55,9 @@ router.get("/songbook/:mail", async (req, res, next) => {
 router.get("/explore/:mail", async (req, res, next) => {
   try {
 
+    let songsArray = await Songs.findAll();
 
-    //AREGLEARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-    let songsArray = await Songs.findAll({
-      exclude: { chartCreator: req.params.mail }
-    });
+    songsArray = songsArray.filter ( el => (el.chartCreator !== req.params.mail) && (el.share === true))
 
     if (songsArray) res.send(songsArray);
     else res.send("there are no songs or user registered yet");

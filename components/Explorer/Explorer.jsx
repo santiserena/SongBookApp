@@ -7,7 +7,7 @@ export default function Explorer() {
 
   const [exploreArray, setExploreArray] = useState([]);
   let userMail = useSelector((state) => state.mail);
-  console.log('mail de nooooo--->', userMail);
+  console.log('user mail--->', userMail);
 
   useEffect(() => {
     
@@ -29,6 +29,7 @@ export default function Explorer() {
             console.log("OK Pressed");
             let result = (await axios.delete(`http://192.168.0.81:3001/erase/${id}`)).data;
             console.log("Result-->", result);
+            setExploreArray(exploreArray.filter ( el => el.id !== id))
           },
         },
         {

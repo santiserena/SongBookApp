@@ -6,6 +6,7 @@ import axios from "react-native-axios";
 
 
 
+
 export default function MySongBook({ navigation }) {
   const [find, setFind] = useState("");
   const [songBookArray, setSongBookArray] = useState([]);
@@ -42,6 +43,9 @@ export default function MySongBook({ navigation }) {
             console.log("OK Pressed");
             let result = (await axios.delete(`http://192.168.0.81:3001/erase/${id}`)).data;
             console.log("Result-->", result);
+            //IMITAR EN EXPLORE!!!!!!!!!!!!!!!!!
+            setSongBookArray(songBookArray.filter ( el => el.id !== id))
+            
           },
         },
         {

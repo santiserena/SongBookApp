@@ -27,7 +27,11 @@ export default function App() {
             component={MySongBook}
             options={{ unmountOnBlur: true }} // this option reload every time we go there
           />
-          <Tab.Screen name="Explorer" component={Explorer} />
+          <Tab.Screen
+            name="Explorer"
+            component={Explorer}
+            options={{ unmountOnBlur: true }}
+          />
           <Tab.Screen name="Settings" component={SettingsScreen} />
           <Tab.Screen name="CreationScreens" component={CreationScreens} />
 
