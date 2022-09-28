@@ -7,6 +7,7 @@ export default function Explorer({navigation}) {
 
   const [exploreArray, setExploreArray] = useState([]);
   const [find, setFind] = useState("");
+  const [filterClear, setFilterClear] = useState(true);
   let userMail = useSelector((state) => state.mail);
   console.log('user mail--->', userMail);
 
@@ -62,7 +63,22 @@ export default function Explorer({navigation}) {
         )
       )
       .catch((e) => console.log(e));
+
+      if (find !== '') setFilterClear(false)
   };
+
+  const getAllSongs = () => {
+
+    axios
+    .get(`http://192.168.0.81:3001/explore/${userMail}`)
+    .then((result) =>
+      setExploreArray(result.data)
+    )
+    .catch((e) => console.log(e));
+    //cleaning
+    setFind('')
+    setFilterClear(true)
+  }
 
   return (
     <ScrollView>
@@ -73,8 +89,16 @@ export default function Explorer({navigation}) {
       <TextInput
         onChangeText={(ev) => onChangeText(ev)}
         placeholder="write.."
+        value = {find}
       />
       <Button onPress={() => search()} title="Search by artist, song name or lyrics" />
+
+      {!filterClear? <Button
+          onPress={() => getAllSongs()}
+          title="Show all songs"
+        /> : null}
+
+      {exploreArray?.length === 0 ? <Text>No matches or songs uploaded yet</Text> : null}
 
       {exploreArray?.map((el) => (
         <Text key={el.id}>

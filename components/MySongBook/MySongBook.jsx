@@ -7,8 +7,12 @@ import axios from "react-native-axios";
 export default function MySongBook({ navigation }) {
   const [find, setFind] = useState("");
   const [songBookArray, setSongBookArray] = useState([]);
+  const [filterClear, setFilterClear] = useState(true);
 
   let userMail = useSelector((state) => state.mail);
+  let updateNewAddedSond = useSelector ( (state) => state.updateNewSongs)
+
+  /* Voy a tener que cargar todas las canciones con una action en store. Y no hace falta tocar nada en explorer */
 
   
   useEffect(() => {
@@ -39,7 +43,22 @@ export default function MySongBook({ navigation }) {
         )
       )
       .catch((e) => console.log(e));
+
+      if (find !== '') setFilterClear(false)
   };
+
+  const getAllSongs = () => {
+
+    axios
+    .get(`http://192.168.0.81:3001/songbook/${userMail}`)
+    .then((result) =>
+      setSongBookArray(result.data)
+    )
+    .catch((e) => console.log(e));
+    //cleaning
+    setFind('')
+    setFilterClear(true)
+  }
 
   async function erase(id) {
 
@@ -82,15 +101,26 @@ export default function MySongBook({ navigation }) {
 
       <Text>Welcome: {userMail}</Text>
 
+
       <Text>MY SONG BOOK:</Text>
       {/* <br /> */}
       <TextInput
         onChangeText={(ev) => onChangeText(ev)}
         placeholder="write.."
-      />
+        value = {find}
+        />
       <Button onPress={() => search()} title="Search by artist, song name or lyrics" />
 
+        {!filterClear? <Button
+          onPress={() => getAllSongs()}
+          title="Show all songs"
+        /> : null}
+
       <Text>{"\n\n"}</Text>
+
+
+      {songBookArray?.length === 0 ? <Text>No matches or songs uploaded yet</Text> : null}
+
 
       {songBookArray?.map((el) => (
         <Text key={el.id}>

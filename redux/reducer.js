@@ -1,5 +1,6 @@
 const initialstate = {
     mail: 'mmail@harcodeadoo.com', // user for login
+    update: true
 }
 
 export default function rootReducer (state = initialstate, action) {
@@ -10,7 +11,15 @@ export default function rootReducer (state = initialstate, action) {
                 mail: action.payload,
             };
 
-        default: return state;
+            
+            case 'UPDATE_NEW_SONGS':
+                console.log('entreeee al redcerrr');
+                return{
+                    ...state, 
+                    update: !state.update,
+                };
+            
+            default: return state;
     }
 
 }

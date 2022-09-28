@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Alert, Button, ScrollView, Text } from "react-native";
 import {Picker} from '@react-native-picker/picker';
 import axios from "react-native-axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {updateNewSongs} from '../../redux/actions'
 
 
 export default function Creator3({ route, navigation }) {
   const [shareMusicTable, setShareMusicTable] = useState(true);
   const [allInfo, setAllInfo] = useState({ ...route.params, share: true });
   const userMail = useSelector ( state => state.mail)
+  const dispatch = useDispatch()
 
   const goback = () => {
     navigation.goBack();
@@ -25,9 +27,9 @@ export default function Creator3({ route, navigation }) {
         Alert.alert(allInfo.songName, 'Song added successfully!', [
           { text: "OK", onPress: () => {
             console.log("OK Pressed") 
+            dispatch (updateNewSongs()) 
             navigation.popToTop()
-            navigation.navigate("My Songbook");
-          
+            navigation.navigate("My Songbook");    
         }},
         ]);
 
