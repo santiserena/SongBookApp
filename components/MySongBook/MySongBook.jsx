@@ -10,13 +10,12 @@ export default function MySongBook({ navigation }) {
 
   let userMail = useSelector((state) => state.mail);
 
-  //DEBE RECARGARSE LUEGO DE AGRAGAR UNA CAMCION. IDEM EN EL EXPLORER
+  
   useEffect(() => {
     axios
     .get(`http://192.168.0.81:3001/songbook/${userMail}`)
     .then((result) => setSongBookArray(result.data))
     .catch((e) => console.log(e));
-    //console.log('ENTRE AL USE EFFECT');
   }, []);
 
 
@@ -26,6 +25,20 @@ export default function MySongBook({ navigation }) {
 
   const search = () => {
     console.log("luego buscare en mi cancionero->", find);
+    //load all the info
+    axios
+      .get(`http://192.168.0.81:3001/songbook/${userMail}`)
+      .then((result) =>
+        setSongBookArray(
+          result.data.filter(
+            (el) =>
+              el.name.toLowerCase().includes(find.toLowerCase()) ||
+              el.artist.toLowerCase().includes(find.toLowerCase()) ||
+              el.lyrics.toLowerCase().includes(find.toLowerCase())
+          )
+        )
+      )
+      .catch((e) => console.log(e));
   };
 
   async function erase(id) {
@@ -75,13 +88,15 @@ export default function MySongBook({ navigation }) {
         onChangeText={(ev) => onChangeText(ev)}
         placeholder="write.."
       />
-      <Button onPress={() => search()} title="Search by artist or song name" />
+      <Button onPress={() => search()} title="Search by artist, song name or lyrics" />
 
       <Text>{"\n\n"}</Text>
 
       {songBookArray?.map((el) => (
         <Text key={el.id}>
           Song: {el.name}
+          {"\n"}
+          Artist: {el.artist}
           {"\n"}
           Album: {el.album}
           {"\n"}

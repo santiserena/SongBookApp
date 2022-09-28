@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { ScrollView, Text, Image, Button, Alert } from "react-native";
+import { ScrollView, Text, Image, Button, Alert, TextInput } from "react-native";
 import axios from "react-native-axios";
 import { useSelector } from "react-redux";
 
 export default function Explorer({navigation}) {
 
   const [exploreArray, setExploreArray] = useState([]);
+  const [find, setFind] = useState("");
   let userMail = useSelector((state) => state.mail);
   console.log('user mail--->', userMail);
 
@@ -41,11 +42,39 @@ export default function Explorer({navigation}) {
     );
   }
 
+  const onChangeText = (ev) => {
+    setFind(ev);
+  };
+
+  const search = () => {
+    console.log("luego buscare en mi cancionero->", find);
+    //load all the info
+    axios
+      .get(`http://192.168.0.81:3001/explore/${userMail}`)
+      .then((result) =>
+        setExploreArray(
+          result.data.filter(
+            (el) =>
+              el.name.toLowerCase().includes(find.toLowerCase()) ||
+              el.artist.toLowerCase().includes(find.toLowerCase()) ||
+              el.lyrics.toLowerCase().includes(find.toLowerCase())
+          )
+        )
+      )
+      .catch((e) => console.log(e));
+  };
+
   return (
     <ScrollView>
       <Text>{"\n\n\n"}</Text>
       <Text>Song explorer:</Text>
       <Text>{"\n\n"}</Text>
+
+      <TextInput
+        onChangeText={(ev) => onChangeText(ev)}
+        placeholder="write.."
+      />
+      <Button onPress={() => search()} title="Search by artist, song name or lyrics" />
 
       {exploreArray?.map((el) => (
         <Text key={el.id}>

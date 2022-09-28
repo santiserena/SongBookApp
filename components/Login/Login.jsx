@@ -39,7 +39,7 @@ export default function Login({ navigation }) {
 
       <Text>{"\n"}</Text>
 
-      <Text>No account? Sign up!</Text>
+      <Text>No account? Sign up! hola</Text>
       <Button
         onPress={() => navigation.navigate("Register")}
         title="Sign up!"
