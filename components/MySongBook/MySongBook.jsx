@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import axios from "react-native-axios";
 
 
-export default function MySongBook({ navigation }) {
+export default function MySongBook({ route, navigation }) {
+
   const [find, setFind] = useState("");
   const [songBookArray, setSongBookArray] = useState([]);
   const [filterClear, setFilterClear] = useState(true);
@@ -13,11 +14,16 @@ export default function MySongBook({ navigation }) {
   let updateNewAddedSond = useSelector ( (state) => state.updateNewSongs)
   
   useEffect(() => {
+    if (filterClear === false) {
+      setFilterClear(true);
+      setFind("");
+    }
+    
     axios
-    .get(`http://192.168.0.81:3001/songbook/${userMail}`)
-    .then((result) => setSongBookArray(result.data))
-    .catch((e) => console.log(e));
-  }, []);
+      .get(`http://192.168.0.81:3001/songbook/${userMail}`)
+      .then((result) => setSongBookArray(result.data))
+      .catch((e) => console.log(e));
+  }, [route.params]); //to reload when a song is added
 
 
   const onChangeText = (ev) => {
@@ -85,6 +91,11 @@ export default function MySongBook({ navigation }) {
     <ScrollView>
       {/* <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}> */}
       <Text>{"\n"}</Text>
+
+      <Text>porfaaaa{route.params?.info}</Text>
+     
+
+      
       <Button
         onPress={() => navigation.navigate("CreationScreens")}
         title="+ (Add new song)"

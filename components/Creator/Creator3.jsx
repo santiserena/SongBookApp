@@ -27,7 +27,7 @@ export default function Creator3({ route, navigation }) {
           { text: "OK", onPress: () => {
             console.log("OK Pressed") 
             navigation.popToTop()
-            navigation.navigate("My Songbook");    
+            navigation.navigate("My Songbook", { info:'just to refresh'});    
         }},
         ]);
 

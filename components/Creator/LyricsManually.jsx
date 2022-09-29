@@ -77,10 +77,6 @@ export default function LyricsManually({ navigation }) {
         <Text>Next -boton- revisar que no sea un string vacio </Text>
       </Button>
 
-      <Text>cancion: {songObject.song}</Text>
-      <Text>artist: {songObject.artist}</Text>
-      <Text>letra: {lyrics}</Text>
-
     </ScrollView>
   );
 }
