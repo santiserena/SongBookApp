@@ -9,15 +9,19 @@ export default function Explorer({navigation}) {
   const [find, setFind] = useState("");
   const [filterClear, setFilterClear] = useState(true);
   let userMail = useSelector((state) => state.mail);
-  console.log('user mail--->', userMail);
 
   useEffect(() => {
+
+     if (filterClear === false) {
+      setFilterClear(true);
+      setFind("");
+    }
     
     axios 
       .get(`http://192.168.0.81:3001/explore/${userMail}`)
       .then((result) => setExploreArray(result.data))
       .catch((e) => console.log(e))
-  }, []);
+  }, [userMail]);
 
   async function erase(id) {
 

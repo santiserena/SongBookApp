@@ -18,12 +18,12 @@ export default function MySongBook({ route, navigation }) {
       setFilterClear(true);
       setFind("");
     }
-    
+
     axios
       .get(`http://192.168.0.81:3001/songbook/${userMail}`)
       .then((result) => setSongBookArray(result.data))
       .catch((e) => console.log(e));
-  }, [route.params]); //to reload when a song is added
+  }, [route.params, userMail]); //to reload when a song is added
 
 
   const onChangeText = (ev) => {
