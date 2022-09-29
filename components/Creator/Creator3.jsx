@@ -3,7 +3,6 @@ import { Alert, Button, ScrollView, Text } from "react-native";
 import {Picker} from '@react-native-picker/picker';
 import axios from "react-native-axios";
 import { useDispatch, useSelector } from "react-redux";
-import {updateNewSongs} from '../../redux/actions'
 
 
 export default function Creator3({ route, navigation }) {
@@ -15,7 +14,7 @@ export default function Creator3({ route, navigation }) {
   const goback = () => {
     navigation.goBack();
   };
-//HECER QUE GUARDE LAS CANCIONES EN EL MAIL QUE ESTA EN EL REDUCER
+
   const saveSong = async () => {
     try {
       let toSend = {...allInfo, chartCreator: userMail} //luego el mail ponerlo en el set state
@@ -27,7 +26,6 @@ export default function Creator3({ route, navigation }) {
         Alert.alert(allInfo.songName, 'Song added successfully!', [
           { text: "OK", onPress: () => {
             console.log("OK Pressed") 
-            dispatch (updateNewSongs()) 
             navigation.popToTop()
             navigation.navigate("My Songbook");    
         }},

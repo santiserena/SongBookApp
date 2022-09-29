@@ -11,9 +11,6 @@ export default function MySongBook({ navigation }) {
 
   let userMail = useSelector((state) => state.mail);
   let updateNewAddedSond = useSelector ( (state) => state.updateNewSongs)
-
-  /* Voy a tener que cargar todas las canciones con una action en store. Y no hace falta tocar nada en explorer */
-
   
   useEffect(() => {
     axios
@@ -72,9 +69,7 @@ export default function MySongBook({ navigation }) {
             console.log("OK Pressed");
             let result = (await axios.delete(`http://192.168.0.81:3001/erase/${id}`)).data;
             console.log("Result-->", result);
-            //IMITAR EN EXPLORE!!!!!!!!!!!!!!!!!
             setSongBookArray(songBookArray.filter ( el => el.id !== id))
-            
           },
         },
         {
@@ -85,8 +80,6 @@ export default function MySongBook({ navigation }) {
       ]
     );
   }
-
-
 
   return (
     <ScrollView>
@@ -100,7 +93,6 @@ export default function MySongBook({ navigation }) {
       <Text>{"\n\n\n"}</Text>
 
       <Text>Welcome: {userMail}</Text>
-
 
       <Text>MY SONG BOOK:</Text>
       {/* <br /> */}
@@ -118,9 +110,7 @@ export default function MySongBook({ navigation }) {
 
       <Text>{"\n\n"}</Text>
 
-
       {songBookArray?.length === 0 ? <Text>No matches or songs uploaded yet</Text> : null}
-
 
       {songBookArray?.map((el) => (
         <Text key={el.id}>
